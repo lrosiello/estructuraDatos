@@ -83,10 +83,9 @@ public class Main {
 		listaDoble.insertFront(4);
 		listaDoble.insertBack(6);
 		listaDoble.insertBack(16);
-		listaDoble.extractBack();
 		listaDoble.insertFront(2);
-		listaDoble.extractFront();
-		listaDoble.extractBack();
+		listaDoble.extractByIndex(3);
+
 		
 		IteradorDouble<Integer> iteradorDoble = listaDoble.iterator();
 		while(iteradorDoble.hasNext()) {

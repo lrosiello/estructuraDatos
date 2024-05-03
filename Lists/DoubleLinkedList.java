@@ -126,14 +126,19 @@ public class DoubleLinkedList<T extends Comparable<T>> implements Iterable<T> {
 		public T extractByIndex(T index) {
 			DoubleNode<T> actual = this.first; //NODO CURSOR
 			DoubleNode<T> anterior = null; //NODO ANTERIOR
-
+	
+			
 			while (actual != null) { //PREGUNTO SI NO ESTOY VACIO
 				if (actual.getInfo().equals(index)) { //PREGUNTO SI EL ACTUAL ES EL MISMO INDICE
 					if (anterior == null) { //
-						this.first = actual.getNext(); // Si el nodo a eliminar es el primero
+						DoubleNode<T> siguienteNodo = actual.getNext(); //nuevo primer nodo es el siguiente
+						siguienteNodo.setPrev(null); //al ser el primero, le cambio el nodo previo a null
+						this.first = siguienteNodo; // Si el nodo a eliminar es el primero
 						size--;
 					} else { //si el nodo a eliminar es el siguiente
-						anterior.setNext(actual.getNext());// enlazo el anterior con el siguiente
+						DoubleNode<T> siguienteNodo = actual.getNext();
+						anterior.setNext(siguienteNodo);// enlazo el anterior con el siguiente
+						siguienteNodo.setPrev(anterior);
 						size--;
 					}
 					return actual.getInfo(); //retorno el nodo eliminado
